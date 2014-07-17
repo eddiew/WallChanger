@@ -1,0 +1,9 @@
+c:\users\wangeddx\documents\visual studio 2012\Projects\BackgroundChanger\BackgroundChanger\bin\Release\BackgroundChanger.exe.config
+c:\users\wangeddx\documents\visual studio 2012\Projects\BackgroundChanger\BackgroundChanger\bin\Release\BackgroundChanger.exe
+c:\users\wangeddx\documents\visual studio 2012\Projects\BackgroundChanger\BackgroundChanger\bin\Release\BackgroundChanger.pdb
+c:\users\wangeddx\documents\visual studio 2012\Projects\BackgroundChanger\BackgroundChanger\obj\Release\BackgroundChanger.csprojResolveAssemblyReference.cache
+c:\users\wangeddx\documents\visual studio 2012\Projects\BackgroundChanger\BackgroundChanger\obj\Release\BackgroundChanger.exe
+c:\users\wangeddx\documents\visual studio 2012\Projects\BackgroundChanger\BackgroundChanger\obj\Release\BackgroundChanger.pdb
+C:\Users\wangeddx\documents\visual studio 2012\Projects\BackgroundChanger\BackgroundChanger\bin\Release\HtmlAgilityPack.dll
+C:\Users\wangeddx\documents\visual studio 2012\Projects\BackgroundChanger\BackgroundChanger\bin\Release\HtmlAgilityPack.pdb
+C:\Users\wangeddx\documents\visual studio 2012\Projects\BackgroundChanger\BackgroundChanger\bin\Release\HtmlAgilityPack.xml
