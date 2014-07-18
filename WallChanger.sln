@@ -6,6 +6,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject", "UnitTestProject\UnitTestProject.csproj", "{4FC1A090-FA71-458B-97ED-CA18F8ADB484}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scheduler", "Scheduler\Scheduler.csproj", "{504FA9E1-1B83-45F0-9F4F-629897F91085}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9F1822D5-12EE-437A-8488-B3C5B407E16F} = {9F1822D5-12EE-437A-8488-B3C5B407E16F}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows.Forms;
 using Microsoft.Win32.TaskScheduler;
+using WallChanger;
 
 namespace Scheduler
 {
@@ -9,13 +10,6 @@ namespace Scheduler
     {
         static void Main(string[] args)
         {
-            #if DEBUG
-                const string mode = "Debug";
-            #else
-                const string mode = "Release";
-            #endif
-            string path = Path.GetDirectoryName(Application.ExecutablePath);
-            path = path.Remove(path.Length - (@"Scheduler\bin\" + mode).Length) + @"WallChanger\bin\"+mode+@"\WallChanger.exe";
             using (var taskService = new TaskService())
             {
                 var td = taskService.NewTask();
@@ -25,7 +19,7 @@ namespace Scheduler
                 td.Settings.StartWhenAvailable = true;
                 var biHourly = new RegistrationTrigger{Repetition = {Interval = TimeSpan.FromMinutes(30)}};
                 td.Triggers.Add(biHourly);
-                td.Actions.Add(new ExecAction(path));
+                td.Actions.Add(new ExecAction(WindowsOps.ExecutableDirectory + @"\WallChanger.exe"));
                 taskService.RootFolder.RegisterTaskDefinition("WallChanger", td);
             }
         }
