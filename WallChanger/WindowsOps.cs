@@ -1,16 +1,19 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace WallChanger
 {
     public class WindowsOps
     {
         public static string BaseDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + @"\BackgroundChanger\";
+        private static readonly Random random = new Random();
         public static readonly string[] Tags =
         {
             "nature",
             "landscapes",
-            "cityscapes"
+            "cityscapes",
+            "steampunk"
         };
 
         static void Main(string[] args)
@@ -20,7 +23,6 @@ namespace WallChanger
 
         public static void ChangeWall()
         {
-            var random = new Random();
             string tag = Tags[random.Next(0, Tags.Length)];
             string uri = UriScraper.GetWallpaperUri(tag);
             string localPath = CreateLocalPath(tag);

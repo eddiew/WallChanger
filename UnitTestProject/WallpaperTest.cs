@@ -9,7 +9,7 @@ namespace UnitTestProject
         [TestMethod]
         public void TestSetWallpaperFromUri()
         {
-            string uri = @"C:\Users\wangeddx\Pictures\BackgroundChanger\nature\wallpaper-2172376.jpg";// TODO: make portable
+            string uri = WindowsOpsTest.BaseDirectory + @"nature\wallpaper-2172376.jpg";
             Wallpaper.SetDesktopWallpaper(uri, WallpaperStyle.Fill);
         }
     }

@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WallChanger;
 
 namespace UnitTestProject
@@ -6,6 +7,7 @@ namespace UnitTestProject
     [TestClass]
     public class WindowsOpsTest
     {
+        public static string BaseDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + @"\BackgroundChanger\";
         [TestMethod]
         public void TestCreateLocalPath()
         {
