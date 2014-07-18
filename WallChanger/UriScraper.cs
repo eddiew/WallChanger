@@ -1,22 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using HtmlAgilityPack;
 
 namespace WallChanger
 {
     public static class UriScraper
     {
-        public const string queryBase = "http://wallbase.cc/search?res_opt=gteq&res=1920x1080&order=random&thpp=20&board=2&q=";
-        public const string destBase = @"C:\Users\wangeddx\Pictures\BackgroundChanger\";
+        public const string queryBase = "http://wallbase.cc/search?res_opt=gteq&res=1920x1080&order=random&thpp=20&aspect=1.01&board=2&q=";
 
-        public static string GetWallpaperUri(String tag)
+        public static string GetWallpaperUri(string tag, string color = null)
         {
-            string uri = queryBase + tag;
+            string uri = queryBase + tag + (color!=null ? "&color="+color : "");
             var htmlWeb = new HtmlWeb();
 
             HtmlDocument doc = htmlWeb.Load(uri);
@@ -30,13 +25,12 @@ namespace WallChanger
             return uri3;
         }
 
-        public static string DownloadWallpaper(string uri)
+        public static string DownloadWallpaper(string uri, string localPath)
         {
-            string name = uri.Substring(uri.LastIndexOf('/'));
+            string localUri = localPath + uri.Substring(uri.LastIndexOf('/'));
             var webClient = new WebClient();
-            string localPath = destBase + name;
-            webClient.DownloadFile(uri, localPath);
-            return localPath;
+            webClient.DownloadFile(uri, localUri);
+            return localUri;
         }
     }
 }

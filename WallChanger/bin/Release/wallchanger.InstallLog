@@ -82,3 +82,80 @@ Restoring event log to previous state for source WallChanger.
 An exception occurred during the Rollback phase of the System.Diagnostics.EventLogInstaller installer.
 System.Security.SecurityException: The source was not found, but some or all event logs could not be searched.  Inaccessible logs: Security.
 An exception occurred during the Rollback phase of the installation. This exception will be ignored and the rollback will continue. However, the machine might not fully revert to its initial state after the rollback is complete.
+Installing assembly 'C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\wallchanger.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\wallchanger.exe
+   logfile = C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\wallchanger.InstallLog
+Installing service WallChanger...
+Creating EventLog source WallChanger in log Application...
+Rolling back assembly 'C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\wallchanger.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\wallchanger.exe
+   logfile = C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\wallchanger.InstallLog
+Restoring event log to previous state for source WallChanger.
+An exception occurred during the Rollback phase of the System.Diagnostics.EventLogInstaller installer.
+System.Security.SecurityException: The source was not found, but some or all event logs could not be searched.  Inaccessible logs: Security.
+An exception occurred during the Rollback phase of the installation. This exception will be ignored and the rollback will continue. However, the machine might not fully revert to its initial state after the rollback is complete.
+Installing assembly 'C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\wallchanger.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\wallchanger.exe
+   logfile = C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\wallchanger.InstallLog
+Installing service WallChanger...
+Service WallChanger has been successfully installed.
+Creating EventLog source WallChanger in log Application...
+Committing assembly 'C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\wallchanger.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\wallchanger.exe
+   logfile = C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\wallchanger.InstallLog
+Installing assembly 'C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\wallchanger.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\wallchanger.exe
+   logfile = C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\wallchanger.InstallLog
+Installing service WallChanger...
+Creating EventLog source WallChanger in log Application...
+Rolling back assembly 'C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\wallchanger.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\wallchanger.exe
+   logfile = C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\wallchanger.InstallLog
+Restoring event log to previous state for source WallChanger.
+Installing assembly 'C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\wallchanger.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\wallchanger.exe
+   logfile = C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\wallchanger.InstallLog
+Installing service WallChanger...
+Creating EventLog source WallChanger in log Application...
+Rolling back assembly 'C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\wallchanger.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\wallchanger.exe
+   logfile = C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\wallchanger.InstallLog
+Restoring event log to previous state for source WallChanger.
+Installing assembly 'C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\wallchanger.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\wallchanger.exe
+   logfile = C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\wallchanger.InstallLog
+Installing service WallChanger...
+Creating EventLog source WallChanger in log Application...
+Rolling back assembly 'C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\wallchanger.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\wallchanger.exe
+   logfile = C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\wallchanger.InstallLog
+Restoring event log to previous state for source WallChanger.
+Uninstalling assembly 'C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\wallchanger.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\wallchanger.exe
+   logfile = C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\wallchanger.InstallLog
+Removing EventLog source WallChanger.
+Service WallChanger is being removed from the system...
+Service WallChanger was successfully removed from the system.
+Attempt to stop service WallChanger.

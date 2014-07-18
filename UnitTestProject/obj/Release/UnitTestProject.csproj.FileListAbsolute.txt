@@ -1,10 +1,10 @@
+C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\UnitTestProject\obj\Release\UnitTestProject.csprojResolveAssemblyReference.cache
 C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\UnitTestProject\bin\Release\UnitTestProject.dll
 C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\UnitTestProject\bin\Release\UnitTestProject.pdb
+C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\UnitTestProject\bin\Release\WallChanger.exe
 C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\UnitTestProject\bin\Release\HtmlAgilityPack.dll
+C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\UnitTestProject\bin\Release\WallChanger.pdb
 C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\UnitTestProject\bin\Release\HtmlAgilityPack.pdb
 C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\UnitTestProject\bin\Release\HtmlAgilityPack.xml
-C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\UnitTestProject\obj\Release\UnitTestProject.csprojResolveAssemblyReference.cache
 C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\UnitTestProject\obj\Release\UnitTestProject.dll
 C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\UnitTestProject\obj\Release\UnitTestProject.pdb
-C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\UnitTestProject\bin\Release\WallChanger.exe
-C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\UnitTestProject\bin\Release\WallChanger.pdb

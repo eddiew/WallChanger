@@ -1,6 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WallChanger;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UnitTestProject
 {
@@ -10,7 +9,7 @@ namespace UnitTestProject
         [TestMethod]
         public void TestSetWallpaperFromUri()
         {
-            string uri = @"C:\Users\wangeddx\Pictures\BackgroundChanger\wallpaper-2172376.jpg";
+            string uri = @"C:\Users\wangeddx\Pictures\BackgroundChanger\nature\wallpaper-2172376.jpg";// TODO: make portable
             Wallpaper.SetDesktopWallpaper(uri, WallpaperStyle.Fill);
         }
     }

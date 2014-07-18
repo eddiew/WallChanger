@@ -47,14 +47,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>WallChanger.WallChanger</StartupObject>
+    <StartupObject>WallChanger.WindowsOps</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.ServiceProcess" />
@@ -66,12 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="WallChanger.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="WallChangerInstaller.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="WindowsOps.cs" />
     <Compile Include="UriScraper.cs" />
     <Compile Include="Wallpaper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

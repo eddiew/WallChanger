@@ -18,8 +18,9 @@ namespace UnitTestProject
         [TestMethod]
         public void TestDownloadWallpaper()
         {
+            string tag = "nature";
             string uri = "http://wallpapers.wallbase.cc/rozne/wallpaper-2172376.jpg";
-            UriScraper.DownloadWallpaper(uri);
+            UriScraper.DownloadWallpaper(uri, tag);
         }
     }
 }
