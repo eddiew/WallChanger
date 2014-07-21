@@ -21,16 +21,22 @@ namespace WallChanger
             "steampunk",
             "night",
             "intel",
-            "desktopography"
+            "desktopography",
+            "abstract"
+        };
+
+        private static readonly string[] DefaultExcludes =
+        {
+            "women",
         };
 
         static void Main(string[] args)
         {
-            List<String> tags = LoadTags();
-            ChangeWall(tags);
+            List<WallbaseQuery> queryList = LoadTags();
+            ChangeWall(queryList[Random.Next(0, queryList.Count)]);
         }
 
-        public static List<String> LoadTags()
+        public static List<WallbaseQuery> LoadTags()
         {
             string tagsFilePath = ExecutableDirectory + @"\tags.txt";
             // Create tags file if it doesn't exist
@@ -42,29 +48,48 @@ namespace WallChanger
                     byte[] tagBytes = Utf8.GetBytes(tag + Environment.NewLine);
                     tagsFileStream.Write(tagBytes, 0, tagBytes.Length);
                 }
+                byte[] excludeBytes = Utf8.GetBytes("!" + String.Join(" ", DefaultExcludes) + Environment.NewLine);
+                tagsFileStream.Write(excludeBytes, 0, excludeBytes.Length);
                 tagsFileStream.Flush();
                 tagsFileStream.Close();
             }
-            var tags = new List<string>();
+            // Read tags from tags.txt
+            var queryList = new List<WallbaseQuery>();
+            var globalExcludes = new List<string>();
             using (var sr = new StreamReader(tagsFilePath))
             {
                 while (sr.Peek() != -1)
                 {
-                    string tag = sr.ReadLine();
-                    if (tag == "") continue;
-                    tags.Add(tag);
+                    string line = sr.ReadLine();
+                    if (string.IsNullOrWhiteSpace(line)) continue;
+                    else if (line.StartsWith("!"))
+                    {
+                        globalExcludes.AddRange(line.Substring(1).Split(' ').Where(x => !string.IsNullOrWhiteSpace(x)));
+                    }
+                    else
+                    {
+                        string[] data = line.Split('!');
+                        if (data.Length == 1)
+                        {
+                            Array.Resize(ref data, 2);
+                            data[1] = "";
+                        }
+                        queryList.Add(new WallbaseQuery(data[0].Split(' ').Where(x => !string.IsNullOrWhiteSpace(x)).ToList(), data[1].Split(' ').Where(x => !string.IsNullOrWhiteSpace(x)).ToList()));
+                    }
                 }
                 sr.Close();
+                foreach (WallbaseQuery query in queryList)
+                {
+                    query.Excludes.AddRange(globalExcludes);
+                }
             }
-            return tags;
+            return queryList;
         }
 
-        public static void ChangeWall(IList<String> tags)
+        public static void ChangeWall(WallbaseQuery query)
         {
-            string tag = tags[Random.Next(0, tags.Count)];
-            string uri = UriScraper.GetWallpaperUri(tag);
-            string localPath = CreateLocalPath(tag);
-            string localUri = UriScraper.DownloadWallpaper(uri, localPath);
+            string localPath = CreateLocalPath(string.Join(" ", query.Tags));
+            string localUri = query.DownloadWallpaper(localPath);
             Wallpaper.SetDesktopWallpaper(localUri, WallpaperStyle.Fill);
         }
 

@@ -7,3 +7,10 @@ C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\
 C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\obj\Release\WallChanger.exe
 C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\obj\Release\WallChanger.pdb
 C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\obj\Release\WallChanger.csprojResolveAssemblyReference.cache
+C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\Fizzler.dll
+C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\Fizzler.Sandbox.dll
+C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\Fizzler.Systems.HtmlAgilityPack.dll
+C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\Fizzler.pdb
+C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\Fizzler.xml
+C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\Fizzler.Sandbox.pdb
+C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\Fizzler.Systems.HtmlAgilityPack.pdb

@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{504FA9E1-1B83-45F0-9F4F-629897F91085}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Scheduler</RootNamespace>
     <AssemblyName>Scheduler</AssemblyName>
@@ -63,17 +63,18 @@
   <PropertyGroup>
     <StartupObject>Scheduler.Scheduler</StartupObject>
   </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Scheduler.cs" />
-    <Compile Include="Settings.cs">
+    <Compile Include="Scheduler.cs">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Settings.Designer.cs">
-      <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -108,8 +109,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Settings.resx">
-      <DependentUpon>Settings.cs</DependentUpon>
+    <EmbeddedResource Include="Scheduler.resx">
+      <DependentUpon>Scheduler.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

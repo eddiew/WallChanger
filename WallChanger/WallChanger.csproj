@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{9F1822D5-12EE-437A-8488-B3C5B407E16F}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WallChanger</RootNamespace>
     <AssemblyName>WallChanger</AssemblyName>
@@ -50,7 +50,17 @@
     <StartupObject>WallChanger.WindowsOps</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HtmlAgilityPack">
+    <Reference Include="Fizzler">
+      <HintPath>..\packages\Fizzler.0.9.3\lib\net35\Fizzler.dll</HintPath>
+    </Reference>
+    <Reference Include="Fizzler.Sandbox">
+      <HintPath>..\packages\Fizzler.0.9.3\lib\net35\Fizzler.Sandbox.dll</HintPath>
+    </Reference>
+    <Reference Include="Fizzler.Systems.HtmlAgilityPack">
+      <HintPath>..\packages\Fizzler.0.9.3\lib\net35\Fizzler.Systems.HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.4.6.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -66,7 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="WindowsOps.cs" />
-    <Compile Include="UriScraper.cs" />
+    <Compile Include="WallbaseQuery.cs" />
     <Compile Include="Wallpaper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
