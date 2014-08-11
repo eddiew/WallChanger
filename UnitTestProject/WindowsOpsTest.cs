@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WallChanger;
 
@@ -28,11 +29,9 @@ namespace UnitTestProject
         [TestMethod]
         public void TestChangeWall()
         {
-            string[] tags =
-            {
-                "nature",
-            };
-            WindowsOps.ChangeWall(tags);
+            var tags = new string[] {"nature"}.ToList();
+            var excludes = new string[] {"nature"}.ToList();
+            WindowsOps.ChangeWall(new WallbaseQuery(tags, excludes));
         }
     }
 }

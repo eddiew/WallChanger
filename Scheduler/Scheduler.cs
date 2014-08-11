@@ -26,10 +26,10 @@ namespace Scheduler
                     "Fetches an image from wallbase.cc and sets it as the desktop background at fixed intervals";
                 td.RegistrationInfo.Author = "Eddie Wang";
                 td.Settings.StartWhenAvailable = true;
-                var biHourly = new RegistrationTrigger{Repetition = {Interval = TimeSpan.FromMinutes(30)}};
+                var biHourly = new TimeTrigger{Repetition = {Interval = TimeSpan.FromMinutes(30)}};
                 td.Triggers.Add(biHourly);
                 td.Actions.Add(new ExecAction(WindowsOps.ExecutableDirectory + @"\WallChanger.exe"));
-                taskService.RootFolder.RegisterTaskDefinition("WallChanger", td);
+                taskService.RootFolder.RegisterTaskDefinition("WallChanger", td).Run();
             }
         }
 

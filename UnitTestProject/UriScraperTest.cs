@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using WallChanger;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -10,8 +12,10 @@ namespace UnitTestProject
         [TestMethod]
         public void TestGetWallpaperUri()
         {
-            string tag = "nature";
-            string uri = WallbaseQuery.GetWallpaperUri(tag);
+            var tagList = new string[] { "nature" }.ToList();
+            var excludeList = new string[] { "women" }.ToList();
+            var query = new WallbaseQuery(tagList, excludeList);
+            string uri = query.GetWallpaperUri();
             Assert.IsTrue(uri.Contains("http://wallpapers.wallbase.cc/"));
         }
 
@@ -19,8 +23,10 @@ namespace UnitTestProject
         public void TestDownloadWallpaper()
         {
             string localPath = WindowsOpsTest.BaseDirectory + @"\nature\";
-            string uri = "http://wallpapers.wallbase.cc/rozne/wallpaper-2172376.jpg";
-            WallbaseQuery.DownloadWallpaper(uri, localPath);
+            var tagList = new string[] { "nature" }.ToList();
+            var excludeList = new string[] { "women" }.ToList();
+            var query = new WallbaseQuery(tagList, excludeList);
+            query.DownloadWallpaper(localPath);
         }
     }
 }
