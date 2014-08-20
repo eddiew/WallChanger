@@ -33,6 +33,15 @@ namespace WallChanger
 {
     public static class Wallpaper
     {
+        private const uint SPI_SETDESKWALLPAPER = 20;
+        private const uint SPIF_UPDATEINIFILE = 0x01;
+        private const uint SPIF_SENDWININICHANGE = 0x02;
+
+        [DllImport("user32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool SystemParametersInfo(uint uiAction, uint uiParam,
+            string pvParam, uint fWinIni);
+
         /// <summary>
         /// Set the desktop wallpaper.
         /// </summary>
@@ -100,22 +109,11 @@ namespace WallChanger
             // Set the desktop wallpapaer by calling the Win32 API SystemParametersInfo 
             // with the SPI_SETDESKWALLPAPER desktop parameter. The changes should 
             // persist, and also be immediately visible.
-            if (!SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, path,
-                SPIF_UPDATEINIFILE | SPIF_SENDWININICHANGE))
+            if (!SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, path, SPIF_UPDATEINIFILE | SPIF_SENDWININICHANGE))
             {
                 throw new Win32Exception();
             }
         }
-
-
-        private const uint SPI_SETDESKWALLPAPER = 20;
-        private const uint SPIF_UPDATEINIFILE = 0x01;
-        private const uint SPIF_SENDWININICHANGE = 0x02;
-
-        [DllImport("user32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        private static extern bool SystemParametersInfo(uint uiAction, uint uiParam,
-            string pvParam, uint fWinIni);
     }
 
     public enum WallpaperStyle

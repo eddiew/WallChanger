@@ -8,9 +8,9 @@ namespace Scheduler
 {
     partial class Scheduler : Form
     {
-        private NotifyIcon NotifyIcon;
+        private NotifyIcon notifyIcon;
         private System.ComponentModel.IContainer components;
-        private Button ChangeWallButton;
+        private Button changeWallButton;
     
         public Scheduler()
         {
@@ -37,26 +37,26 @@ namespace Scheduler
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Scheduler));
-            this.ChangeWallButton = new System.Windows.Forms.Button();
-            this.NotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.changeWallButton = new System.Windows.Forms.Button();
+            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.SuspendLayout();
             // 
-            // ChangeWallButton
+            // changeWallButton
             // 
-            this.ChangeWallButton.Location = new System.Drawing.Point(12, 12);
-            this.ChangeWallButton.Name = "ChangeWallButton";
-            this.ChangeWallButton.Size = new System.Drawing.Size(103, 23);
-            this.ChangeWallButton.TabIndex = 0;
-            this.ChangeWallButton.Text = "Change Wallpaper";
-            this.ChangeWallButton.UseVisualStyleBackColor = true;
-            this.ChangeWallButton.Click += new System.EventHandler(this.ChangeWallButton_Click);
+            this.changeWallButton.Location = new System.Drawing.Point(12, 12);
+            this.changeWallButton.Name = "changeWallButton";
+            this.changeWallButton.Size = new System.Drawing.Size(103, 23);
+            this.changeWallButton.TabIndex = 0;
+            this.changeWallButton.Text = "Change Wallpaper";
+            this.changeWallButton.UseVisualStyleBackColor = true;
+            this.changeWallButton.Click += new System.EventHandler(this.ChangeWallButton_Click);
             // 
-            // NotifyIcon
+            // notifyIcon
             // 
-            this.NotifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("NotifyIcon.Icon")));
-            this.NotifyIcon.Text = "WallChanger";
-            this.NotifyIcon.Visible = true;
-            this.NotifyIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.NotifyIcon_MouseClick);
+            this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
+            this.notifyIcon.Text = "WallChanger";
+            this.notifyIcon.Visible = true;
+            this.notifyIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.NotifyIcon_MouseClick);
             // 
             // Scheduler
             // 
@@ -64,7 +64,7 @@ namespace Scheduler
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(163, 79);
             this.ControlBox = false;
-            this.Controls.Add(this.ChangeWallButton);
+            this.Controls.Add(this.changeWallButton);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Scheduler";
