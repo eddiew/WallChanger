@@ -7,7 +7,6 @@ namespace Scheduler
 {
     public class SysTrayIcon : Form
     {
-        private readonly Task wallChangerTask;
         private NotifyIcon notifyIcon;
         private ContextMenuStrip contextMenuStrip;
         private ToolStripMenuItem changeToolStripMenuItem;
@@ -15,12 +14,11 @@ namespace Scheduler
         private ToolStripMenuItem optionsToolStripMenuItem;
         private ToolStripMenuItem exitToolStripMenuItem;
         private System.ComponentModel.IContainer components;
-        private bool isAutoChanging; // necessary b/c Task.State throws COMException
+        private readonly Task wallChangerTask;
 
         public SysTrayIcon(Task wallChangerTask)
         {
             this.wallChangerTask = wallChangerTask;
-            isAutoChanging = true;
             InitializeComponent();
         }
 
@@ -75,8 +73,8 @@ namespace Scheduler
             this.autoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
             this.autoToolStripMenuItem.ShowShortcutKeys = false;
             this.autoToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
-            this.autoToolStripMenuItem.Text = "Pause";
-            this.autoToolStripMenuItem.ToolTipText = "Pause auto-change";
+            this.autoToolStripMenuItem.Text = wallChangerTask.Enabled? "Pause" : "Resume";
+            this.autoToolStripMenuItem.ToolTipText = (wallChangerTask.Enabled? "Pause" : "Resume") + " auto-change";
             this.autoToolStripMenuItem.Click += new System.EventHandler(this.autoToolStripMenuItem_Click);
             // 
             // optionsToolStripMenuItem
@@ -128,10 +126,15 @@ namespace Scheduler
 
         private void changeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            wallChangerTask.Run();
-            if (!isAutoChanging)
+            if (wallChangerTask.Enabled)
             {
-                wallChangerTask.Stop();
+                wallChangerTask.Run();
+            }
+            else
+            {
+                wallChangerTask.Enabled = true;
+                wallChangerTask.Run();
+                wallChangerTask.Enabled = false;
             }
         }
 
@@ -142,19 +145,17 @@ namespace Scheduler
 
         private void autoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (isAutoChanging)
+            if (wallChangerTask.Enabled)
             {
-                wallChangerTask.Stop();
+                wallChangerTask.Enabled = false;
                 autoToolStripMenuItem.Text = "Resume";
                 autoToolStripMenuItem.ToolTipText = "Resume auto-change";
-                isAutoChanging = false;
             }
             else
             {
-                wallChangerTask.Run();
+                wallChangerTask.Enabled = true;
                 autoToolStripMenuItem.Text = "Pause";
                 autoToolStripMenuItem.ToolTipText = "Pause auto-change";
-                isAutoChanging = true;
             }
         }
 
