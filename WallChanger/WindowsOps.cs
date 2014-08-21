@@ -4,13 +4,17 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using log4net;
+using log4net.Config;
+using log4net.Repository.Hierarchy;
 
 namespace WallChanger
 {
-    public class WindowsOps
+    public static class WindowsOps
     {
         public static string PictureDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + @"\BackgroundChanger\";
         public static string ExecutableDirectory = Path.GetDirectoryName(Application.ExecutablePath);
+        public static string DocumentsDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\BackgroundChanger\";
         private static readonly Random Random = new Random();
         private static readonly UTF8Encoding Utf8 = new UTF8Encoding();
         private static readonly string[] DefaultTags =
@@ -20,8 +24,6 @@ namespace WallChanger
             "cityscapes",
             "steampunk",
             "night",
-            "intel",
-            "desktopography",
             "abstract"
         };
 
@@ -30,15 +32,30 @@ namespace WallChanger
             "women",
         };
 
+        private static ILog logger = LogManager.GetLogger("WindowsOps");
+
         static void Main(string[] args)
         {
+            BasicConfigurator.Configure();
             List<WallbaseQuery> queryList = LoadTags();
             ChangeWall(queryList[Random.Next(0, queryList.Count)]);
         }
 
         public static List<WallbaseQuery> LoadTags()
         {
-            string tagsFilePath = ExecutableDirectory + @"\tags.txt";
+            if (!Directory.Exists(DocumentsDirectory))
+            {
+                Directory.CreateDirectory(DocumentsDirectory);
+            }
+            if (!Directory.Exists(DocumentsDirectory))
+            {
+                logger.Fatal("Unable to create configuration directory at: " + DocumentsDirectory);
+            }
+            else
+            {
+                logger.Debug("Configuration directory at: " + DocumentsDirectory + " was found or created correctly");
+            }
+            string tagsFilePath = DocumentsDirectory + @"\tags.txt";
             // Create tags file if it doesn't exist
             if (!File.Exists(tagsFilePath))
             {
@@ -52,6 +69,14 @@ namespace WallChanger
                 tagsFileStream.Write(excludeBytes, 0, excludeBytes.Length);
                 tagsFileStream.Flush();
                 tagsFileStream.Close();
+            }
+            if (!File.Exists(tagsFilePath))
+            {
+                logger.Fatal("Unable to create configuration file at: " + tagsFilePath);
+            }
+            else
+            {
+                logger.Debug("Configuration file at: " + tagsFilePath + " was found or created correctly");
             }
             // Read tags from tags.txt
             var queryList = new List<WallbaseQuery>();
@@ -83,14 +108,31 @@ namespace WallChanger
                     query.Excludes.AddRange(globalExcludes);
                 }
             }
+            if (queryList.Count == 0)
+            {
+                logger.Fatal("Unable to load configuration file at: " + tagsFilePath);
+            }
+            else
+            {
+                logger.Debug("Configuration file at: " + tagsFilePath + " loaded correctly");
+            }
             return queryList;
         }
 
         public static void ChangeWall(WallbaseQuery query)
         {
-            string localPath = CreateLocalPath(string.Join(" ", query.Tags));
-            string localUri = query.DownloadWallpaper(localPath);
-            Wallpaper.SetDesktopWallpaper(localUri, WallpaperStyle.Fill);
+            string localUri = "";
+            try
+            {
+                string localPath = CreateLocalPath(string.Join(" ", query.Tags));
+                localUri = query.DownloadWallpaper(localPath);
+                Wallpaper.SetDesktopWallpaper(localUri, WallpaperStyle.Fill);
+                logger.Debug("Wallpaper correctly set to: " + localUri);
+            }
+            catch (Exception e)
+            {
+                logger.Fatal("Unable to set wallpaper to: " + localUri, e);
+            }
         }
 
         public static string CreateLocalPath(string tag)
