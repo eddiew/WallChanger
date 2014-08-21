@@ -73,7 +73,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Scheduler.cs">
+    <Compile Include="Scheduler.cs" />
+    <Compile Include="SysTrayIcon.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
@@ -109,9 +110,13 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Scheduler.resx">
-      <DependentUpon>Scheduler.cs</DependentUpon>
+    <EmbeddedResource Include="SysTrayIcon.resx">
+      <DependentUpon>SysTrayIcon.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
