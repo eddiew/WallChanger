@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Windows.Forms;
 using Microsoft.Win32.TaskScheduler;
 
 namespace Scheduler
 {
-    public partial class SysTrayIcon : Form
+    public class SysTrayIcon : Form
     {
         private readonly Task wallChangerTask;
         private NotifyIcon notifyIcon;
@@ -27,10 +24,12 @@ namespace Scheduler
             InitializeComponent();
         }
 
+        // ReSharper disable RedundantThisQualifier, RedundantNameQualifier, RedundantCast, RedundantDelegateCreation
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SysTrayIcon));
+            // ReSharper disable 
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.changeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -118,6 +117,7 @@ namespace Scheduler
             this.ResumeLayout(false);
 
         }
+        // ReSharper restore RedundantThisQualifier, RedundantNameQualifier, RedundantCast, RedundantDelegateCreation
 
         private void notifyIcon_Click(object sender, EventArgs e)
         {
