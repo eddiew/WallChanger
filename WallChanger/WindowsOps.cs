@@ -30,6 +30,8 @@ namespace WallChanger
         private static readonly string[] DefaultExcludes =
         {
             "women",
+            "mlp",
+            "mylittlepony",
         };
 
         private static ILog logger = LogManager.GetLogger("WindowsOps");
