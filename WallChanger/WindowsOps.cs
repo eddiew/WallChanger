@@ -139,7 +139,7 @@ namespace WallChanger
 
         public static string CreateLocalPath(string tag)
         {
-            string localPath = PictureDirectory + (tag != null ? '\\' + tag + '\\' : "");
+            string localPath = PictureDirectory + (tag != null ? tag + '\\' : "");
             Directory.CreateDirectory(localPath);
             return localPath;
         }

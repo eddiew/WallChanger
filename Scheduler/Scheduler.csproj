@@ -49,10 +49,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>66D6EB9C1030B0DAB6B5775166049478A116139D</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>06D9C6CE44DC64A89A56D4BFD92C44BD65F91289</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>Scheduler_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>Scheduler_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -71,6 +71,8 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Scheduler_1_TemporaryKey.pfx" />
+    <None Include="Scheduler_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Scheduler.cs" />

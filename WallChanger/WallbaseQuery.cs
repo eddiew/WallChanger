@@ -50,6 +50,7 @@ namespace WallChanger
             HtmlDocument imgPage = htmlWeb.Load(uri2);
             HtmlNode img = imgPage.DocumentNode.SelectSingleNode(@"//img[contains(@class, 'wall')]");
             string uri3 = img.GetAttributeValue("src", null);
+            //uri3 = uri3.SkipWhile(x => (x == '\\') || (x == '/'));
             return uri3;
         }
 
