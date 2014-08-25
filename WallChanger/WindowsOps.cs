@@ -84,8 +84,11 @@ namespace WallChanger
                     byte[] tagBytes = Utf8.GetBytes(tag + Environment.NewLine);
                     tagsFileStream.Write(tagBytes, 0, tagBytes.Length);
                 }
-                byte[] excludeBytes = Utf8.GetBytes("!" + String.Join(" ", DefaultExcludes) + Environment.NewLine);
-                tagsFileStream.Write(excludeBytes, 0, excludeBytes.Length);
+                foreach (string exclude in DefaultExcludes)
+                {
+                    byte[] excludeBytes = Utf8.GetBytes('!' + exclude + Environment.NewLine);
+                    tagsFileStream.Write(excludeBytes, 0, excludeBytes.Length);
+                }
                 tagsFileStream.Flush();
                 tagsFileStream.Close();
                 logger.Debug("Success");
