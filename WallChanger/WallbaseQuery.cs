@@ -28,39 +28,31 @@ namespace WallChanger
             return queryBase + (Tags != null ? string.Join("%20", Tags) : "") + (Color != null ? "&color=" + Color : "");
         }
 
-        public string GetWallpaperUri()
+        public string GetWallpaperUri(uint nSamples = 3)
         {
             var htmlWeb = new HtmlWeb();
-
             HtmlDocument thumbsPage = htmlWeb.Load(GetQueryString());
             IEnumerable<HtmlNode> thumbs = thumbsPage.GetElementbyId("thumbs").ChildNodes.Where(x => x.GetAttributeValue("class", "").Contains("thumbnail"));
-            string uri2 = null;
-            int maxFaves = 0;
             IEnumerator<HtmlNode> it = thumbs.GetEnumerator();
-            // Take the most favorited of the first 3 results
-            for (var i = 0; i < 3; i++)
+            string uri2 = null;
+            int maxFaves = -1;
+            // Take the most favorited of the first (nSamples) valid results, stopping early if fewer were found
+            for (var i = 0; i < nSamples; i++)
             {
                 // break if no more thumbs were found
                 if (!it.MoveNext()) break;
                 HtmlNode current = it.Current;
                 IEnumerable<string> thumbTags = current.GetAttributeValue("data-tags", null).Split('|').Where(x => !string.IsNullOrWhiteSpace(x));
                 if (Excludes != null && Enumerable.Intersect(thumbTags, Excludes).Any()) continue;
-                int faves = Int32.Parse(current.QuerySelector(".wrapper>.faved-0>.num").InnerText);
+                HtmlNode favNode = current.QuerySelector(".wrapper>.faved-0>.num");
+                // Thumbs won't have a faves element if they have no faves
+                int faves = favNode == null ? 0 : Int32.Parse(favNode.InnerText);
                 if (faves > maxFaves)
                 {
                     maxFaves = faves;
                     uri2 = current.QuerySelector(".wrapper>a:last-child").GetAttributeValue("href", null);
+                    i++;
                 }
-            }
-            // If none of the first 3 results satisfied our excludes, take the first result that does
-            while (uri2 == null)
-            {
-                // break if no more thumbs were found
-                if (!it.MoveNext()) break;
-                HtmlNode current = it.Current;
-                IEnumerable<string> thumbTags = current.GetAttributeValue("data-tags", null).Split('|').Where(x => !string.IsNullOrWhiteSpace(x));
-                if (Excludes != null && Enumerable.Intersect(thumbTags, Excludes).Any()) continue;
-                uri2 = current.QuerySelector(".wrapper>a:last-child").GetAttributeValue("href", null);
             }
             if (uri2 == null)
             {

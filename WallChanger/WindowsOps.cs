@@ -47,6 +47,7 @@ namespace WallChanger
         {
             if (!Directory.Exists(DocumentsDirectory))
             {
+                logger.Debug("Creating configuration directory at: " + DocumentsDirectory);
                 Directory.CreateDirectory(DocumentsDirectory);
             }
             if (!Directory.Exists(DocumentsDirectory))
@@ -57,10 +58,11 @@ namespace WallChanger
             {
                 logger.Debug("Configuration directory at: " + DocumentsDirectory + " was found or created correctly");
             }
-            string tagsFilePath = DocumentsDirectory + @"\tags.txt";
+            string tagsFilePath = DocumentsDirectory + "tags.txt";
             // Create tags file if it doesn't exist
             if (!File.Exists(tagsFilePath))
             {
+                logger.Debug("Configuration file not found. Creating from defaults");
                 FileStream tagsFileStream = File.Create(tagsFilePath);
                 foreach (string tag in DefaultTags)
                 {
@@ -71,20 +73,22 @@ namespace WallChanger
                 tagsFileStream.Write(excludeBytes, 0, excludeBytes.Length);
                 tagsFileStream.Flush();
                 tagsFileStream.Close();
+                logger.Debug("Success");
+            }
+            else
+            {
+                logger.Debug("Configuration file found");
             }
             if (!File.Exists(tagsFilePath))
             {
                 logger.Fatal("Unable to create configuration file at: " + tagsFilePath);
-            }
-            else
-            {
-                logger.Debug("Configuration file at: " + tagsFilePath + " was found or created correctly");
             }
             // Read tags from tags.txt
             var queryList = new List<WallbaseQuery>();
             var globalExcludes = new List<string>();
             using (var sr = new StreamReader(tagsFilePath))
             {
+                logger.Debug("Loading configuration at: " + tagsFilePath);
                 while (sr.Peek() != -1)
                 {
                     string line = sr.ReadLine();
@@ -116,7 +120,7 @@ namespace WallChanger
             }
             else
             {
-                logger.Debug("Configuration file at: " + tagsFilePath + " loaded correctly");
+                logger.Debug("Success");
             }
             return queryList;
         }
@@ -126,10 +130,11 @@ namespace WallChanger
             string localUri = "";
             try
             {
+                logger.Debug("Attempting to set wallpaper to: " + localUri);
                 string localPath = CreateLocalPath(string.Join(" ", query.Tags));
                 localUri = query.DownloadWallpaper(localPath);
                 Wallpaper.SetDesktopWallpaper(localUri, WallpaperStyle.Fill);
-                logger.Debug("Wallpaper correctly set to: " + localUri);
+                logger.Debug("Success");
             }
             catch (Exception e)
             {

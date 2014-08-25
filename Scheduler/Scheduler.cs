@@ -17,18 +17,13 @@ namespace Scheduler
             
             using (var taskService = new TaskService())
             {
-                var wallChangerTask = GetWallChangerTask(taskService);
+                var wallChangerTask = CreateWallChangerTask(taskService);
                 Application.Run(new SysTrayIcon(wallChangerTask));
             }
         }
 
-        public static Task GetWallChangerTask(TaskService ts)
+        public static Task CreateWallChangerTask(TaskService ts)
         {
-            var existingTask = ts.FindTask("WallChanger", false);
-            if (existingTask != null)
-            {
-                return existingTask;
-            }
             var td = ts.NewTask();
             td.RegistrationInfo.Description =
                 "Fetches an image from wallbase.cc and sets it as the desktop background at fixed intervals";
