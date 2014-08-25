@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Reflection;
 using System.Windows.Forms;
 using Microsoft.Win32.TaskScheduler;
+using WallChanger;
 
 namespace Scheduler
 {
@@ -140,7 +142,7 @@ namespace Scheduler
 
         private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // TODO
+            Process.Start(WindowsOps.DocumentsDirectory);
         }
 
         private void autoToolStripMenuItem_Click(object sender, EventArgs e)
