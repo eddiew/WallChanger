@@ -35,13 +35,32 @@ namespace WallChanger
             HtmlDocument thumbsPage = htmlWeb.Load(GetQueryString());
             IEnumerable<HtmlNode> thumbs = thumbsPage.GetElementbyId("thumbs").ChildNodes.Where(x => x.GetAttributeValue("class", "").Contains("thumbnail"));
             string uri2 = null;
-            foreach (HtmlNode thumb in thumbs)
+            int maxFaves = 0;
+            IEnumerator<HtmlNode> it = thumbs.GetEnumerator();
+            // Take the most favorited of the first 3 results
+            for (var i = 0; i < 3; i++)
             {
-                IEnumerable<string> thumbTags = thumb.GetAttributeValue("data-tags", null).Split('|').Where(x => !string.IsNullOrWhiteSpace(x));
+                // break if no more thumbs were found
+                if (!it.MoveNext()) break;
+                HtmlNode current = it.Current;
+                IEnumerable<string> thumbTags = current.GetAttributeValue("data-tags", null).Split('|').Where(x => !string.IsNullOrWhiteSpace(x));
                 if (Excludes != null && Enumerable.Intersect(thumbTags, Excludes).Any()) continue;
-                uri2 = thumb.QuerySelector(".wrapper>a:last-child").GetAttributeValue("href", null);
-                if (uri2 == null) continue;
-                break;
+                int faves = Int32.Parse(current.QuerySelector(".wrapper>.faved-0>.num").InnerText);
+                if (faves > maxFaves)
+                {
+                    maxFaves = faves;
+                    uri2 = current.QuerySelector(".wrapper>a:last-child").GetAttributeValue("href", null);
+                }
+            }
+            // If none of the first 3 results satisfied our excludes, take the first result that does
+            while (uri2 == null)
+            {
+                // break if no more thumbs were found
+                if (!it.MoveNext()) break;
+                HtmlNode current = it.Current;
+                IEnumerable<string> thumbTags = current.GetAttributeValue("data-tags", null).Split('|').Where(x => !string.IsNullOrWhiteSpace(x));
+                if (Excludes != null && Enumerable.Intersect(thumbTags, Excludes).Any()) continue;
+                uri2 = current.QuerySelector(".wrapper>a:last-child").GetAttributeValue("href", null);
             }
             if (uri2 == null)
             {
@@ -50,7 +69,6 @@ namespace WallChanger
             HtmlDocument imgPage = htmlWeb.Load(uri2);
             HtmlNode img = imgPage.DocumentNode.SelectSingleNode(@"//img[contains(@class, 'wall')]");
             string uri3 = img.GetAttributeValue("src", null);
-            //uri3 = uri3.SkipWhile(x => (x == '\\') || (x == '/'));
             return uri3;
         }
 

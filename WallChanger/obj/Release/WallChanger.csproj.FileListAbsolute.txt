@@ -14,8 +14,6 @@ C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\
 C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\log4net.dll
 C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Release\log4net.xml
 C:\Users\eddie_000\prog\WallChanger\WallChanger\bin\Release\WallChanger.exe.config
-C:\Users\eddie_000\prog\WallChanger\WallChanger\obj\Release\WallChanger.exe
-C:\Users\eddie_000\prog\WallChanger\WallChanger\obj\Release\WallChanger.pdb
 C:\Users\eddie_000\prog\WallChanger\WallChanger\bin\Release\WallChanger.pdb
 C:\Users\eddie_000\prog\WallChanger\WallChanger\bin\Release\Fizzler.Systems.HtmlAgilityPack.dll
 C:\Users\eddie_000\prog\WallChanger\WallChanger\bin\Release\HtmlAgilityPack.dll
@@ -28,3 +26,5 @@ C:\Users\eddie_000\prog\WallChanger\WallChanger\bin\Release\log4net.xml
 C:\Users\eddie_000\prog\WallChanger\WallChanger\bin\Release\Fizzler.pdb
 C:\Users\eddie_000\prog\WallChanger\WallChanger\bin\Release\Fizzler.xml
 C:\Users\eddie_000\prog\WallChanger\WallChanger\obj\Release\WallChanger.csprojResolveAssemblyReference.cache
+C:\Users\eddie_000\prog\WallChanger\WallChanger\obj\Release\WallChanger.exe
+C:\Users\eddie_000\prog\WallChanger\WallChanger\obj\Release\WallChanger.pdb

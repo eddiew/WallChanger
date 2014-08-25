@@ -71,8 +71,6 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Scheduler_1_TemporaryKey.pfx" />
-    <None Include="Scheduler_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Scheduler.cs" />
@@ -89,9 +87,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.XML" />
-    <Reference Include="WallChanger">
-      <HintPath>..\WallChanger\bin\Release\WallChanger.exe</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
@@ -118,6 +113,12 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WallChanger\WallChanger.csproj">
+      <Project>{9f1822d5-12ee-437a-8488-b3c5b407e16f}</Project>
+      <Name>WallChanger</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
