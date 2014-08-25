@@ -11,12 +11,12 @@ namespace WallChanger
     public class WallbaseQuery
     {
         public const string queryBase = "http://wallbase.cc/search?res_opt=gteq&res=1920x1080&order=random&thpp=20&aspect=1.01&board=2&q=";
-        
-        public readonly List<String> Tags;
-        public readonly List<String> Excludes;
+
+        public readonly List<string> Tags;
+        public readonly List<string> Excludes;
         public readonly string Color;
 
-        public WallbaseQuery(List<String> tags, List<String> excludes, string color = null)
+        public WallbaseQuery(List<string> tags, List<string> excludes, string color = null)
         {
             this.Tags = tags;
             this.Excludes = excludes;
@@ -28,7 +28,7 @@ namespace WallChanger
             return queryBase + (Tags != null ? string.Join("%20", Tags) : "") + (Color != null ? "&color=" + Color : "");
         }
 
-        public string GetWallpaperUri(uint nSamples = 3)
+        private WallData GetWallData(uint nSamples = 3)
         {
             var htmlWeb = new HtmlWeb();
             HtmlDocument thumbsPage = htmlWeb.Load(GetQueryString());
@@ -61,16 +61,27 @@ namespace WallChanger
             HtmlDocument imgPage = htmlWeb.Load(uri2);
             HtmlNode img = imgPage.DocumentNode.SelectSingleNode(@"//img[contains(@class, 'wall')]");
             string uri3 = img.GetAttributeValue("src", null);
-            return uri3;
+            HtmlNode tagContainer = imgPage.DocumentNode.QuerySelector("body>.wrap>.topbar>.bar-right>.centr>.l2");
+            IEnumerable<HtmlNode> tagNodes = tagContainer.QuerySelectorAll(".tag>.tag-wrap>a");
+            List<string> tags = tagNodes.Select(x => x.GetAttributeValue("title", null)).Where(x => !string.IsNullOrWhiteSpace(x)).ToList();
+            return new WallData { tags = tags, uri = uri3};
         }
 
-        public string DownloadWallpaper(string localPath)
+        public WallData DownloadWallpaper(string localPath, uint nSamples = 3)
         {
-            string uri = GetWallpaperUri();
-            string localUri = localPath + uri.Substring(uri.LastIndexOf('/'));
+
+            WallData wallData = GetWallData(nSamples);
+            string localUri = localPath + wallData.uri.Substring(wallData.uri.LastIndexOf('/'));
             var webClient = new WebClient();
-            webClient.DownloadFile(uri, localUri);
-            return localUri;
+            webClient.DownloadFile(wallData.uri, localUri);
+            WallData localWallData = new WallData { tags = wallData.tags, uri = localUri};
+            return localWallData;
         }
+    }
+
+    public struct WallData
+    {
+        public List<string> tags;
+        public string uri;
     }
 }

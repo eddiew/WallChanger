@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,9 @@ namespace WallChanger
 {
     public static class WindowsOps
     {
-        public static string PictureDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + @"\BackgroundChanger\";
-        public static string ExecutableDirectory = Path.GetDirectoryName(Application.ExecutablePath);
-        public static string DocumentsDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\BackgroundChanger\";
+        public static readonly string PictureDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + @"\BackgroundChanger\";
+        public static readonly string ExecutableDirectory = Path.GetDirectoryName(Application.ExecutablePath);
+        public static readonly string DocumentsDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\BackgroundChanger\";
         private static readonly Random Random = new Random();
         private static readonly UTF8Encoding Utf8 = new UTF8Encoding();
         private static readonly string[] DefaultTags =
@@ -38,6 +39,20 @@ namespace WallChanger
 
         static void Main(string[] args)
         {
+            if (args != null)
+            {
+                foreach (string arg in args) {
+                    string key = arg.Substring(0, arg.IndexOf('='));
+                    switch (key)
+                    {
+                        case "BatteryOnly":
+                            Boolean isRunningOnBattery = (SystemInformation.PowerStatus.PowerLineStatus == PowerLineStatus.Offline);
+                            // Don't change wallpaper if BatteryOnly = 1 and isRunningOnBattery = true
+                            if (arg[key.Length+1] == '1' && isRunningOnBattery) return;
+                            break;
+                    }
+                }
+            }
             BasicConfigurator.Configure();
             List<WallbaseQuery> queryList = LoadTags();
             ChangeWall(queryList[Random.Next(0, queryList.Count)]);
@@ -132,7 +147,11 @@ namespace WallChanger
             {
                 logger.Debug("Attempting to set wallpaper to: " + localUri);
                 string localPath = CreateLocalPath(string.Join(" ", query.Tags));
-                localUri = query.DownloadWallpaper(localPath);
+                WallData wallData = query.DownloadWallpaper(localPath);
+                localUri = wallData.uri;
+                // Set file tags
+                //Image wall = Image.FromFile(localUri);
+                //wall.Tag = 
                 Wallpaper.SetDesktopWallpaper(localUri, WallpaperStyle.Fill);
                 logger.Debug("Success");
             }
