@@ -18,9 +18,9 @@ namespace WallChanger
 
         public WallbaseQuery(List<string> tags, List<string> excludes, string color = null)
         {
-            this.Tags = tags;
-            this.Excludes = excludes;
-            this.Color = color;
+            Tags = tags;
+            Excludes = excludes;
+            Color = color;
         }
 
         public string GetQueryString()
@@ -42,8 +42,8 @@ namespace WallChanger
                 // break if no more thumbs were found
                 if (!it.MoveNext()) break;
                 HtmlNode current = it.Current;
-                IEnumerable<string> thumbTags = current.GetAttributeValue("data-tags", null).Split('|').Where(x => !string.IsNullOrWhiteSpace(x));
-                if (Excludes != null && Enumerable.Intersect(thumbTags, Excludes).Any()) continue;
+                IEnumerable<string> thumbTags = current.GetAttributeValue("data-tags", null).Split('|').Where(x => !string.IsNullOrWhiteSpace(x)).Select(x => x.ToLower());
+                if (Excludes != null && thumbTags.Select(x => x.ToLower()).Intersect(Excludes).Any()) continue;
                 HtmlNode favNode = current.QuerySelector(".wrapper>.faved-0>.num");
                 // Thumbs won't have a faves element if they have no faves
                 int faves = favNode == null ? 0 : Int32.Parse(favNode.InnerText);

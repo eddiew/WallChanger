@@ -41,10 +41,10 @@ namespace Scheduler
             // 
             // notifyIcon
             // 
-            this.notifyIcon.BalloonTipText = "WallChanger";
+            this.notifyIcon.BalloonTipText = "Wall Changer";
             this.notifyIcon.ContextMenuStrip = this.contextMenuStrip;
             this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
-            this.notifyIcon.Text = "WallChanger";
+            this.notifyIcon.Text = "Wall Changer";
             this.notifyIcon.Visible = true;
             this.notifyIcon.Click += new System.EventHandler(this.notifyIcon_Click);
             // 
@@ -96,7 +96,7 @@ namespace Scheduler
             this.exitToolStripMenuItem.ShowShortcutKeys = false;
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.ToolTipText = "Quit Wallchanger and stop auto-changing";
+            this.exitToolStripMenuItem.ToolTipText = "Quit Wall Changer and stop auto-changing";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // SysTrayIcon

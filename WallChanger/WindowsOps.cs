@@ -13,9 +13,9 @@ namespace WallChanger
 {
     public static class WindowsOps
     {
-        public static readonly string PictureDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + @"\BackgroundChanger\";
+        public static readonly string PictureDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + @"\Wall Changer\";
         public static readonly string ExecutableDirectory = Path.GetDirectoryName(Application.ExecutablePath);
-        public static readonly string DocumentsDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\BackgroundChanger\";
+        public static readonly string DocumentsDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Wall Changer\";
         private static readonly Random Random = new Random();
         private static readonly UTF8Encoding Utf8 = new UTF8Encoding();
         private static readonly string[] DefaultTags =
@@ -32,7 +32,7 @@ namespace WallChanger
         {
             "women",
             "mlp",
-            "mylittlepony",
+            "my little pony",
         };
 
         private static ILog logger = LogManager.GetLogger("WindowsOps");

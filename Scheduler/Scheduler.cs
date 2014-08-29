@@ -11,7 +11,7 @@ namespace Scheduler
 {
     static class Scheduler
     {
-        private static readonly Dictionary<string, string> defaultTaskSettings = new Dictionary<string, string> {
+        private static readonly Dictionary<string, string> DefaultTaskSettings = new Dictionary<string, string> {
             {"Interval","30"},
             {"BatteryOnly","1"},
             //{"DisallowStartIfOnBatteries","false"},
@@ -43,30 +43,30 @@ namespace Scheduler
             td.Settings.StartWhenAvailable = true;
             td.Settings.DisallowStartIfOnBatteries = false;
             td.Settings.StopIfGoingOnBatteries = false;
-            int interval = Int32.Parse(taskSettings["Interval"] ?? defaultTaskSettings["Interval"]);
+            int interval = Int32.Parse(taskSettings["Interval"] ?? DefaultTaskSettings["Interval"]);
             var biHourly = new TimeTrigger { Repetition = { Interval = TimeSpan.FromMinutes(interval) } };
             td.Triggers.Add(biHourly);
             // Set WallChanger.exe arguments
             List<string> args = new List<string>();
-            string batteryOnly = taskSettings["BatteryOnly"] ?? defaultTaskSettings["BatteryOnly"];
+            string batteryOnly = taskSettings["BatteryOnly"] ?? DefaultTaskSettings["BatteryOnly"];
             args.Add("BatteryOnly=" + batteryOnly);
             var wallChangeAction = new ExecAction(WindowsOps.ExecutableDirectory + @"\WallChanger.exe") {
                 Arguments = string.Join(" ", args)
             };
             td.Actions.Add(wallChangeAction);
-            return ts.RootFolder.RegisterTaskDefinition("WallChanger", td);
+            return ts.RootFolder.RegisterTaskDefinition("Wall Changer", td);
         }
 
         public static Dictionary<string, string> LoadSettings()
         {
-            string DocumentsDirectory = WindowsOps.DocumentsDirectory;
-            Directory.CreateDirectory(DocumentsDirectory);
-            string settingsFilePath = DocumentsDirectory + "taskSettings.txt";
+            string documentsDirectory = WindowsOps.DocumentsDirectory;
+            Directory.CreateDirectory(documentsDirectory);
+            string settingsFilePath = documentsDirectory + "task settings.txt";
             // Create settings file if it doesn't exist
             if (!File.Exists(settingsFilePath))
             {
                 FileStream fs = File.Create(settingsFilePath);
-                string json = JsonConvert.SerializeObject(defaultTaskSettings, Formatting.Indented);
+                string json = JsonConvert.SerializeObject(DefaultTaskSettings, Formatting.Indented);
                 byte[] jsonBytes = Utf8.GetBytes(json);
                 fs.Write(jsonBytes, 0, jsonBytes.Length);
                 fs.Flush();
