@@ -29,8 +29,8 @@ namespace UnitTestProject
         [TestMethod]
         public void TestChangeWall()
         {
-            var tags = new string[] {"nature"}.ToList();
-            var excludes = new string[] {"nature"}.ToList();
+            var tags = new [] {"nature"}.ToList();
+            var excludes = new [] {"nature"}.ToList();
             WindowsOps.ChangeWall(new WallbaseQuery(tags, excludes));
         }
     }

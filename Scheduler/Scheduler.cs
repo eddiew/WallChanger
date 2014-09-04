@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Win32;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,9 +12,11 @@ namespace Scheduler
 {
     static class Scheduler
     {
+        public const string TaskName = "Wall Changer";
         private static readonly Dictionary<string, string> DefaultTaskSettings = new Dictionary<string, string> {
             {"Interval","30"},
             {"BatteryOnly","1"},
+            {"StartupLaunch","1"},
             //{"DisallowStartIfOnBatteries","false"},
             //{"StopIfGoingOnBatteries","false"},
         };
@@ -27,6 +30,7 @@ namespace Scheduler
             Application.SetCompatibleTextRenderingDefault(false);
             // Load task settings
             Dictionary<string, string> taskSettings = LoadSettings();
+            SetStartupLaunch(taskSettings["StartupLaunch"] == "1");
             using (var taskService = new TaskService())
             {
                 var wallChangerTask = CreateWallChangerTask(taskService, taskSettings);
@@ -54,10 +58,10 @@ namespace Scheduler
                 Arguments = string.Join(" ", args)
             };
             td.Actions.Add(wallChangeAction);
-            return ts.RootFolder.RegisterTaskDefinition("Wall Changer", td);
+            return ts.RootFolder.RegisterTaskDefinition(TaskName, td);
         }
 
-        public static Dictionary<string, string> LoadSettings()
+        private static Dictionary<string, string> LoadSettings() // TODO add defaults to existing file if missing
         {
             string documentsDirectory = WindowsOps.DocumentsDirectory;
             Directory.CreateDirectory(documentsDirectory);
@@ -75,6 +79,18 @@ namespace Scheduler
             // Read settings file
             string jsonSettings = File.ReadAllText(settingsFilePath);
             return JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonSettings);
+        }
+
+        private static void SetStartupLaunch(bool startupLaunch)
+        {
+            RegistryKey rk = Registry.CurrentUser.OpenSubKey
+                ("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            if (rk == null) return; // Do nothing if we cannot write to the registry
+            if (startupLaunch)
+                rk.SetValue("WallChanger", Application.ExecutablePath);
+            else
+                rk.DeleteValue("WallChanger", false);
+
         }
     }
 }

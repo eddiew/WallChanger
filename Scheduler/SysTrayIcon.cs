@@ -22,6 +22,7 @@ namespace Scheduler
         {
             this.wallChangerTask = wallChangerTask;
             InitializeComponent();
+            Application.ApplicationExit += OnApplicationExit;
         }
 
         // ReSharper disable RedundantThisQualifier, RedundantNameQualifier, RedundantCast, RedundantDelegateCreation
@@ -163,9 +164,13 @@ namespace Scheduler
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            wallChangerTask.Stop();
-            notifyIcon.Visible = false;
             Application.Exit();
+        }
+
+        private void OnApplicationExit(object sender, EventArgs e)
+        {
+            wallChangerTask.TaskService.RootFolder.DeleteTask(wallChangerTask.Name, false);
+            notifyIcon.Visible = false;
         }
     }
 }
