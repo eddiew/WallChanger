@@ -558,19 +558,20 @@ namespace Scheduler
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(384, 262);
             this.tabControl.TabIndex = 1;
-            this.tabControl.Visible = false;
             // 
             // SysTrayIcon
             // 
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(384, 262);
+            this.ContextMenuStrip = this.contextMenuStrip;
             this.Controls.Add(this.tabControl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(265, 300);
             this.Name = "SysTrayIcon";
             this.Text = "Wall Changer Settings";
             this.Load += new System.EventHandler(this.SysTrayIcon_Load);
+            this.FormClosing += HideOnClose;
             this.contextMenuStrip.ResumeLayout(false);
             this.generalPage.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
@@ -617,7 +618,8 @@ namespace Scheduler
 
         private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Process.Start(WindowsOps.DocumentsDirectory);
+            //Process.Start(WindowsOps.DocumentsDirectory);
+            Show();
         }
 
         private void autoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -650,6 +652,13 @@ namespace Scheduler
         private void SysTrayIcon_Load(object sender, EventArgs e)
         {
             // TODO init controls
+        }
+
+        private void HideOnClose(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason != CloseReason.UserClosing) return;
+            e.Cancel = true;
+            Hide();
         }
 
         private void checkBox3_CheckedChanged(object sender, EventArgs e)

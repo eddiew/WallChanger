@@ -34,7 +34,9 @@ namespace Scheduler
             using (var taskService = new TaskService())
             {
                 var wallChangerTask = CreateWallChangerTask(taskService, taskSettings);
-                Application.Run(new SysTrayIcon(wallChangerTask));
+                var form = new SysTrayIcon(wallChangerTask);
+                form.Hide();
+                Application.Run();
             }
         }
 
