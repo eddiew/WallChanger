@@ -51,10 +51,11 @@ namespace Scheduler
         {
             this.wallChangerTask = wallChangerTask;
             InitializeComponent();
+            FormClosing += HideOnClose;
             Application.ApplicationExit += OnApplicationExit;
         }
 
-        // ReSharper disable RedundantThisQualifier, RedundantNameQualifier, RedundantCast, RedundantDelegateCreation
+        // ReSharper disable RedundantThisQualifier, RedundantNameQualifier, RedundantCast, RedundantDelegateCreation, RedundantExplicitArrayCreation
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
@@ -176,7 +177,7 @@ namespace Scheduler
             this.generalPage.Location = new System.Drawing.Point(4, 22);
             this.generalPage.Name = "generalPage";
             this.generalPage.Padding = new System.Windows.Forms.Padding(3);
-            this.generalPage.Size = new System.Drawing.Size(446, 275);
+            this.generalPage.Size = new System.Drawing.Size(376, 236);
             this.generalPage.TabIndex = 2;
             this.generalPage.Text = "General";
             this.generalPage.UseVisualStyleBackColor = true;
@@ -197,8 +198,8 @@ namespace Scheduler
             this.splitContainer2.Panel2.Controls.Add(this.startupInput);
             this.splitContainer2.Panel2.Controls.Add(this.label6);
             this.splitContainer2.Panel2.Controls.Add(this.intervalInput);
-            this.splitContainer2.Size = new System.Drawing.Size(440, 269);
-            this.splitContainer2.SplitterDistance = 220;
+            this.splitContainer2.Size = new System.Drawing.Size(370, 230);
+            this.splitContainer2.SplitterDistance = 185;
             this.splitContainer2.TabIndex = 0;
             // 
             // batteryOnlyInput
@@ -208,11 +209,11 @@ namespace Scheduler
             this.batteryOnlyInput.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.batteryOnlyInput.Location = new System.Drawing.Point(3, 26);
             this.batteryOnlyInput.Name = "batteryOnlyInput";
-            this.batteryOnlyInput.Size = new System.Drawing.Size(214, 17);
+            this.batteryOnlyInput.Size = new System.Drawing.Size(179, 17);
             this.batteryOnlyInput.TabIndex = 22;
             this.batteryOnlyInput.Text = "Auto Change on Battery";
             this.batteryOnlyInput.UseVisualStyleBackColor = true;
-            this.batteryOnlyInput.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.batteryOnlyInput.CheckedChanged += new System.EventHandler(this.batteryOnlyInput_CheckedChanged);
             // 
             // label5
             // 
@@ -231,16 +232,17 @@ namespace Scheduler
             this.startupInput.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.startupInput.Location = new System.Drawing.Point(3, 26);
             this.startupInput.Name = "startupInput";
-            this.startupInput.Size = new System.Drawing.Size(210, 17);
+            this.startupInput.Size = new System.Drawing.Size(175, 17);
             this.startupInput.TabIndex = 23;
             this.startupInput.Text = "Launch on Startup";
             this.startupInput.UseVisualStyleBackColor = true;
+            this.startupInput.CheckedChanged += new System.EventHandler(this.startupInput_CheckedChanged);
             // 
             // label6
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(172, 5);
+            this.label6.Location = new System.Drawing.Point(137, 5);
             this.label6.Margin = new System.Windows.Forms.Padding(0, 6, 3, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(43, 13);
@@ -255,7 +257,7 @@ namespace Scheduler
             0,
             0,
             0});
-            this.intervalInput.Location = new System.Drawing.Point(136, 3);
+            this.intervalInput.Location = new System.Drawing.Point(101, 3);
             this.intervalInput.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.intervalInput.Maximum = new decimal(new int[] {
             120,
@@ -376,7 +378,7 @@ namespace Scheduler
             this.sketchyInput.TabIndex = 19;
             this.sketchyInput.Text = "Sketchy";
             this.sketchyInput.UseVisualStyleBackColor = true;
-            this.sketchyInput.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            this.sketchyInput.CheckedChanged += new System.EventHandler(this.sketchyInput_CheckedChanged);
             // 
             // label3
             // 
@@ -412,7 +414,7 @@ namespace Scheduler
             this.weabooInput.TabIndex = 20;
             this.weabooInput.Text = "Manga/Anime";
             this.weabooInput.UseVisualStyleBackColor = true;
-            this.weabooInput.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
+            this.weabooInput.CheckedChanged += new System.EventHandler(this.weabooInput_CheckedChanged);
             // 
             // nsfwInput
             // 
@@ -425,6 +427,7 @@ namespace Scheduler
             this.nsfwInput.TabIndex = 22;
             this.nsfwInput.Text = "NSFW";
             this.nsfwInput.UseVisualStyleBackColor = true;
+            this.nsfwInput.CheckedChanged += new System.EventHandler(this.nsfwInput_CheckedChanged);
             // 
             // label2
             // 
@@ -571,7 +574,6 @@ namespace Scheduler
             this.Name = "SysTrayIcon";
             this.Text = "Wall Changer Settings";
             this.Load += new System.EventHandler(this.SysTrayIcon_Load);
-            this.FormClosing += HideOnClose;
             this.contextMenuStrip.ResumeLayout(false);
             this.generalPage.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
@@ -593,8 +595,9 @@ namespace Scheduler
             this.ResumeLayout(false);
 
         }
-        // ReSharper restore RedundantThisQualifier, RedundantNameQualifier, RedundantCast, RedundantDelegateCreation
+        // ReSharper restore RedundantThisQualifier, RedundantNameQualifier, RedundantCast, RedundantDelegateCreation,  RedundantExplicitArrayCreation
 
+        // ReSharper disable InconsistentNaming
         private void notifyIcon_Click(object sender, EventArgs e)
         {
             // l33t reflection haxx
@@ -661,12 +664,7 @@ namespace Scheduler
             Hide();
         }
 
-        private void checkBox3_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        private void sketchyInput_CheckedChanged(object sender, EventArgs e)
         {
 
         }
@@ -676,9 +674,25 @@ namespace Scheduler
 
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void nsfwInput_CheckedChanged(object sender, EventArgs e)
         {
 
         }
+
+        private void weabooInput_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void batteryOnlyInput_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void startupInput_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+        // ReSharper restore InconsistentNaming
     }
 }

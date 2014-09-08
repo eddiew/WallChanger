@@ -16,8 +16,6 @@ namespace WallChanger
         public static readonly string PictureDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + @"\Wall Changer\";
         public static readonly string ExecutableDirectory = Path.GetDirectoryName(Application.ExecutablePath);
         public static readonly string DocumentsDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Wall Changer\";
-        private static readonly Random Random = new Random();
-        private static readonly UTF8Encoding Utf8 = new UTF8Encoding();
         private static readonly string[] DefaultTags =
         {
             "nature",
@@ -55,7 +53,7 @@ namespace WallChanger
             }
             BasicConfigurator.Configure();
             List<WallbaseQuery> queryList = LoadTags();
-            ChangeWall(queryList[Random.Next(0, queryList.Count)]);
+            ChangeWall(queryList[new Random().Next(0, queryList.Count)]);
         }
 
         public static List<WallbaseQuery> LoadTags()
@@ -77,16 +75,17 @@ namespace WallChanger
             // Create tags file if it doesn't exist
             if (!File.Exists(tagsFilePath))
             {
+                UTF8Encoding utf8 = new UTF8Encoding();
                 logger.Debug("Configuration file not found. Creating from defaults");
                 FileStream tagsFileStream = File.Create(tagsFilePath);
                 foreach (string tag in DefaultTags)
                 {
-                    byte[] tagBytes = Utf8.GetBytes(tag + Environment.NewLine);
+                    byte[] tagBytes = utf8.GetBytes(tag + Environment.NewLine);
                     tagsFileStream.Write(tagBytes, 0, tagBytes.Length);
                 }
                 foreach (string exclude in DefaultExcludes)
                 {
-                    byte[] excludeBytes = Utf8.GetBytes('!' + exclude + Environment.NewLine);
+                    byte[] excludeBytes = utf8.GetBytes('!' + exclude + Environment.NewLine);
                     tagsFileStream.Write(excludeBytes, 0, excludeBytes.Length);
                 }
                 tagsFileStream.Flush();
