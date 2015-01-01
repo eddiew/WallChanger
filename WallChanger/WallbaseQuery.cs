@@ -48,7 +48,7 @@ namespace WallChanger
                 HtmlNode current = it.Current;
                 IEnumerable<string> tags = current.SelectNodes("ul/li/a[1]").Select(x => x.InnerText);
                 //IEnumerable<string> thumbTags = current.GetAttributeValue("data-tags", null).Split('|').Where(x => !string.IsNullOrWhiteSpace(x)).Select(x => x.ToLower());
-                if (Excludes != null && thumbTags.Select(x => x.ToLower()).Intersect(Excludes).Any()) continue;
+                if (Excludes != null && tags.Select(x => x.ToLower()).Intersect(Excludes).Any()) continue;
                 HtmlNode favNode = current.SelectSingleNode("div/*[2]");
                 // HtmlNode favNode = current.QuerySelector(".wrapper>.faved-0>.num");
                 // // Thumbs won't have a faves element if they have no faves
