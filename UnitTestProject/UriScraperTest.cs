@@ -13,9 +13,9 @@ namespace UnitTestProject
         public void TestDownloadWallpaper()
         {
             string localPath = WindowsOpsTest.BaseDirectory + @"\nature\";
-            var tagList = new string[] { "nature" }.ToList();
+            var tag = "nature";
             var excludeList = new string[] { "women" }.ToList();
-            var query = new WallbaseQuery(tagList, excludeList);
+            var query = new WallbaseQuery(tag, excludeList);
             query.DownloadWallpaper(localPath);
         }
     }

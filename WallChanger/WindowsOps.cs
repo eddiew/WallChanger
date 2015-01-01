@@ -18,7 +18,7 @@ namespace WallChanger
         public static readonly string DocumentsDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Wall Changer\";
         private static readonly Random Random = new Random();
         private static readonly UTF8Encoding Utf8 = new UTF8Encoding();
-        private static readonly string[] DefaultTags =
+        private static List<string> Tags = new List<string>
         {
             "nature",
             "landscapes",
@@ -28,7 +28,7 @@ namespace WallChanger
             "abstract"
         };
 
-        private static readonly string[] DefaultExcludes =
+        private static List<string> Excludes = new List<string>
         {
             "women",
             "mlp",
@@ -54,11 +54,11 @@ namespace WallChanger
                 }
             }
             BasicConfigurator.Configure();
-            List<WallbaseQuery> queryList = LoadTags();
-            ChangeWall(queryList[Random.Next(0, queryList.Count)]);
+            LoadTags();
+            ChangeWall();
         }
 
-        public static List<WallbaseQuery> LoadTags()
+        public static void LoadTags()
         {
             if (!Directory.Exists(DocumentsDirectory))
             {
@@ -79,12 +79,18 @@ namespace WallChanger
             {
                 logger.Debug("Configuration file not found. Creating from defaults");
                 FileStream tagsFileStream = File.Create(tagsFilePath);
-                foreach (string tag in DefaultTags)
+                if (tagsFileStream == null)
+                {
+                    logger.Error("Unable to create configuration file at: " + tagsFilePath);
+                    logger.Info("Using default tags");
+                    return;
+                }
+                foreach (string tag in Tags)
                 {
                     byte[] tagBytes = Utf8.GetBytes(tag + Environment.NewLine);
                     tagsFileStream.Write(tagBytes, 0, tagBytes.Length);
                 }
-                foreach (string exclude in DefaultExcludes)
+                foreach (string exclude in Excludes)
                 {
                     byte[] excludeBytes = Utf8.GetBytes('!' + exclude + Environment.NewLine);
                     tagsFileStream.Write(excludeBytes, 0, excludeBytes.Length);
@@ -92,18 +98,16 @@ namespace WallChanger
                 tagsFileStream.Flush();
                 tagsFileStream.Close();
                 logger.Debug("Success");
+                return;
             }
             else
             {
                 logger.Debug("Configuration file found");
-            }
-            if (!File.Exists(tagsFilePath))
-            {
-                logger.Fatal("Unable to create configuration file at: " + tagsFilePath);
+                // Don't use defaults
+                Excludes.Clear();
+                Tags.Clear();
             }
             // Read tags from tags.txt
-            var queryList = new List<WallbaseQuery>();
-            var globalExcludes = new List<string>();
             using (var sr = new StreamReader(tagsFilePath))
             {
                 logger.Debug("Loading configuration at: " + tagsFilePath);
@@ -113,43 +117,31 @@ namespace WallChanger
                     if (string.IsNullOrWhiteSpace(line)) continue;
                     else if (line.StartsWith("!"))
                     {
-                        globalExcludes.AddRange(line.Substring(1).Split(' ').Where(x => !string.IsNullOrWhiteSpace(x)));
+                        Excludes.Add(line.Substring(1));
                     }
                     else
                     {
-                        string[] data = line.Split('!');
-                        if (data.Length == 1)
-                        {
-                            Array.Resize(ref data, 2);
-                            data[1] = "";
-                        }
-                        queryList.Add(new WallbaseQuery(data[0].Split(' ').Where(x => !string.IsNullOrWhiteSpace(x)).ToList(), data[1].Split(' ').Where(x => !string.IsNullOrWhiteSpace(x)).ToList()));
+                        Tags.Add(line);
                     }
                 }
                 sr.Close();
-                foreach (WallbaseQuery query in queryList)
-                {
-                    query.Excludes.AddRange(globalExcludes);
-                }
             }
-            if (queryList.Count == 0)
-            {
-                logger.Fatal("Unable to load configuration file at: " + tagsFilePath);
-            }
-            else
-            {
-                logger.Debug("Success");
-            }
-            return queryList;
+            logger.Debug("Tags loaded");
         }
 
-        public static void ChangeWall(WallbaseQuery query)
+        private static WallbaseQuery GetRandomQuery()
         {
+            return new WallbaseQuery(Tags[Random.Next(0, Tags.Count)], Excludes);
+        }
+
+        public static void ChangeWall()
+        {
+            WallbaseQuery query = GetRandomQuery();
             string localUri = "";
             try
             {
                 logger.Debug("Attempting to set wallpaper to: " + localUri);
-                string localPath = CreateLocalPath(string.Join(" ", query.Tags));
+                string localPath = CreateLocalPath(string.Join(" ", query.Tag));
                 WallData wallData = query.DownloadWallpaper(localPath);
                 localUri = wallData.uri;
                 // Set file tags

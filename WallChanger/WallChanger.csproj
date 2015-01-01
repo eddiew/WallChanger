@@ -70,12 +70,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="WallChanger, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Release\WallChanger.exe</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IQuery.cs" />
     <Compile Include="WindowsOps.cs" />
     <Compile Include="WallbaseQuery.cs" />
     <Compile Include="Wallpaper.cs" />

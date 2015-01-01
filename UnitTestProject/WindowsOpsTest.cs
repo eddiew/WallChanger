@@ -22,16 +22,13 @@ namespace UnitTestProject
         [TestMethod]
         public void TestLoadTags()
         {
-            var tags = WindowsOps.LoadTags();
-            Assert.IsNotNull(tags);
+            WindowsOps.LoadTags();
         }
 
         [TestMethod]
         public void TestChangeWall()
         {
-            var tags = new [] {"nature"}.ToList();
-            var excludes = new [] {"nature"}.ToList();
-            WindowsOps.ChangeWall(new WallbaseQuery(tags, excludes));
+            WindowsOps.ChangeWall();
         }
     }
 }

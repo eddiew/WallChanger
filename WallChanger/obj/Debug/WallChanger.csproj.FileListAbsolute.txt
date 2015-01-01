@@ -20,3 +20,18 @@ C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\
 C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Debug\Fizzler.pdb
 C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Debug\Fizzler.xml
 C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\WallChanger\bin\Debug\Fizzler.Systems.HtmlAgilityPack.pdb
+C:\Users\eddie_000\prog\WallChanger\WallChanger\bin\Debug\WallChanger.exe.config
+C:\Users\eddie_000\prog\WallChanger\WallChanger\bin\Debug\WallChanger.exe
+C:\Users\eddie_000\prog\WallChanger\WallChanger\bin\Debug\WallChanger.pdb
+C:\Users\eddie_000\prog\WallChanger\WallChanger\bin\Debug\Fizzler.Systems.HtmlAgilityPack.dll
+C:\Users\eddie_000\prog\WallChanger\WallChanger\bin\Debug\HtmlAgilityPack.dll
+C:\Users\eddie_000\prog\WallChanger\WallChanger\bin\Debug\log4net.dll
+C:\Users\eddie_000\prog\WallChanger\WallChanger\bin\Debug\Fizzler.dll
+C:\Users\eddie_000\prog\WallChanger\WallChanger\bin\Debug\Fizzler.Systems.HtmlAgilityPack.pdb
+C:\Users\eddie_000\prog\WallChanger\WallChanger\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\eddie_000\prog\WallChanger\WallChanger\bin\Debug\HtmlAgilityPack.xml
+C:\Users\eddie_000\prog\WallChanger\WallChanger\bin\Debug\log4net.xml
+C:\Users\eddie_000\prog\WallChanger\WallChanger\bin\Debug\Fizzler.pdb
+C:\Users\eddie_000\prog\WallChanger\WallChanger\bin\Debug\Fizzler.xml
+C:\Users\eddie_000\prog\WallChanger\WallChanger\obj\Debug\WallChanger.exe
+C:\Users\eddie_000\prog\WallChanger\WallChanger\obj\Debug\WallChanger.pdb

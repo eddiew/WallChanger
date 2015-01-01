@@ -23,3 +23,15 @@ C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\UnitTestProj
 C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\UnitTestProject\bin\Debug\Fizzler.Systems.HtmlAgilityPack.pdb
 C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\UnitTestProject\bin\Debug\Fizzler.pdb
 C:\Users\wangeddx\Documents\Visual Studio 2012\Projects\WallChanger\UnitTestProject\bin\Debug\Fizzler.xml
+C:\Users\eddie_000\prog\WallChanger\UnitTestProject\bin\Debug\UnitTestProject.dll
+C:\Users\eddie_000\prog\WallChanger\UnitTestProject\bin\Debug\UnitTestProject.pdb
+C:\Users\eddie_000\prog\WallChanger\UnitTestProject\bin\Debug\WallChanger.exe
+C:\Users\eddie_000\prog\WallChanger\UnitTestProject\bin\Debug\log4net.dll
+C:\Users\eddie_000\prog\WallChanger\UnitTestProject\bin\Debug\HtmlAgilityPack.dll
+C:\Users\eddie_000\prog\WallChanger\UnitTestProject\bin\Debug\WallChanger.pdb
+C:\Users\eddie_000\prog\WallChanger\UnitTestProject\bin\Debug\log4net.xml
+C:\Users\eddie_000\prog\WallChanger\UnitTestProject\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\eddie_000\prog\WallChanger\UnitTestProject\bin\Debug\HtmlAgilityPack.xml
+C:\Users\eddie_000\prog\WallChanger\UnitTestProject\obj\Debug\UnitTestProject.csprojResolveAssemblyReference.cache
+C:\Users\eddie_000\prog\WallChanger\UnitTestProject\obj\Debug\UnitTestProject.dll
+C:\Users\eddie_000\prog\WallChanger\UnitTestProject\obj\Debug\UnitTestProject.pdb
