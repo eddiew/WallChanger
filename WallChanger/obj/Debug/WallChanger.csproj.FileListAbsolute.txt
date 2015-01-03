@@ -35,3 +35,4 @@ C:\Users\eddie_000\prog\WallChanger\WallChanger\bin\Debug\Fizzler.pdb
 C:\Users\eddie_000\prog\WallChanger\WallChanger\bin\Debug\Fizzler.xml
 C:\Users\eddie_000\prog\WallChanger\WallChanger\obj\Debug\WallChanger.exe
 C:\Users\eddie_000\prog\WallChanger\WallChanger\obj\Debug\WallChanger.pdb
+C:\Users\eddie_000\prog\WallChanger\WallChanger\obj\Debug\WallChanger.csprojResolveAssemblyReference.cache

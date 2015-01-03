@@ -13,6 +13,7 @@ namespace WallChanger
         // public const string queryBase = "http://wallbase.cc/search?res_opt=gteq&res=1920x1080&order=random&thpp=20&aspect=1.01&board=2&q=";
         public const string queryBase = "http://alpha.wallhaven.cc/search?categories=101&purity=110&resolutions=1600x900,1600x1200,1680x1050,1920x1080,1920x1200,2560x1440,2560x1600&sorting=random&order=desc&q=";
 
+        public readonly string QueryString;
         public readonly string Tag;
         public readonly List<string> Excludes;
         //public readonly string Color;
@@ -20,20 +21,20 @@ namespace WallChanger
         public WallbaseQuery(string tag, List<string> excludes/*, string color = null*/)
         {
             Tag = tag;
+            QueryString = MakeQueryString(tag);
             Excludes = excludes;
             //Color = color;
         }
 
-        public string GetQueryString()
+        private static string MakeQueryString(string tag)
         {
-            return queryBase + (Tag != null ? Tag.Replace(" ", "%20") : "") /*+ (Color != null ? "&color=" + Color : "")*/;
+            return queryBase + (tag != null ? tag.Replace(" ", "%20") : "") /*+ (Color != null ? "&color=" + Color : "")*/;
         }
 
         private WallData GetWallData(uint nSamples = 3)
         {
             var htmlWeb = new HtmlWeb();
-            string queryString = GetQueryString();
-            HtmlDocument thumbsPage = htmlWeb.Load(queryString);
+            HtmlDocument thumbsPage = htmlWeb.Load(QueryString);
             IEnumerable<HtmlNode> thumbs = thumbsPage.GetElementbyId("thumbs").SelectNodes("section/ul/li/figure");
             //IEnumerable<HtmlNode> thumbs = thumbsPage.GetElementbyId("thumbs").ChildNodes.Where(x => x.GetAttributeValue("class", "").Split(' ').Contains("thumb"));
             IEnumerator<HtmlNode> it = thumbs.GetEnumerator();
