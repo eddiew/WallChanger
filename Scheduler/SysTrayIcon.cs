@@ -30,7 +30,6 @@ namespace Scheduler
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SysTrayIcon));
-            // ReSharper disable 
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.changeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -76,8 +75,8 @@ namespace Scheduler
             this.autoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
             this.autoToolStripMenuItem.ShowShortcutKeys = false;
             this.autoToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
-            this.autoToolStripMenuItem.Text = wallChangerTask.Enabled? "Pause" : "Resume";
-            this.autoToolStripMenuItem.ToolTipText = (wallChangerTask.Enabled? "Pause" : "Resume") + " auto-change";
+            this.autoToolStripMenuItem.Text = (wallChangerTask.Enabled ? "Pause" : "Resume");
+            this.autoToolStripMenuItem.ToolTipText = (wallChangerTask.Enabled ? "Pause" : "Resume") + " auto-change";
             this.autoToolStripMenuItem.Click += new System.EventHandler(this.autoToolStripMenuItem_Click);
             // 
             // optionsToolStripMenuItem
