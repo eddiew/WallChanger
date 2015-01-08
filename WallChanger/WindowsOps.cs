@@ -24,7 +24,7 @@ namespace WallChanger
             "landscapes",
             "cityscapes",
             "steampunk",
-            "night",
+            "cyberpunk",
             "abstract"
         };
 
